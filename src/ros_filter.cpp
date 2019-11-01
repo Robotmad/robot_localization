@@ -2538,9 +2538,9 @@ namespace RobotLocalization
     }
     else
     {
-      // Otherwise, we should use our target frame
+      // Otherwise, we should use our target frame: This was causing issues with the IMU rotation being doubled as the frame moved.
       finalTargetFrame = targetFrame;
-      poseTmp.frame_id_ = (differential ? finalTargetFrame : msg->header.frame_id);
+      poseTmp.frame_id_ = msg->header.frame_id;
     }
 
     RF_DEBUG("Final target frame for " << topicName << " is " << finalTargetFrame << "\n");
